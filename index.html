@@ -8,12 +8,164 @@
 </head>
 <body>
 
+<div class="wrapper">
 
         <h1>Sea Adventure Game</h1>
-        <div class="image"><img src="https://33.media.tumblr.com/3b9ce3ba60cc52552dee18534aaa1518/tumblr_mmnz6vsIo61s2kooao1_500.gif"/>
+
+        <h2 class="status"></h2>
+
+        <h2 class="status2"></h2>
+
+        <h2 class="status3"></h2>
+
+        <h2 class="status4"></h2>
+
+        <h2 class="monsterstat"></h2>
+
+        <h2 class="wealthstatus"></h2>
+
+
+
+        <h2 class="choose">Choose Your Character</h2>
+            <form id="createGame" action="">
+            <input type="text" name="name" id= "character1" placeholder="Character Name">
+            <button type="submit">Create Game</button>
+            </form>
+
+        <div id="board"></div>
+
+        <div id="firstscene">
+            <p>You wake up to the quarter master shaking you saying 'Cap'n a storm came out of nowhere, the sail master got knocked out by a loose riggin. We need you at the wheel!'<button>Continue</button></p>
         </div>
 
-    <script src="Java1.js"></script>
+        <div class="prompt1"><p>You jump out of bed and open your drawer to grab some pants. Which pants do you choose? The brown or red pair?</p>
+            <button class="red">Red</button>
+            <button class="brown">Brown</button>
 
+        </div>
+
+        <div class="pantsbrown">
+            <p>When you come up on the deck, your first mate is so stunned by your pants that he falls overboard. Roll the die to see how many crew members you lose.</p>
+            <div class="die">
+                <button>Roll the Die</button>
+            </div>
+        </div>
+        <div class="pantsred">
+            <p>How patriotic of you!</p>
+        </div>
+
+<!--second scenario -->
+
+        <div class="secondscene">
+            <p>With your pants on, you run up to the deck, water splashes you in the face as lightening strikes all around your ship. You glance around at all the faces of your crew, standing about the deck. The quarter master whispers in your ear, 'they waitin' for your command, sir'</p>
+        </div>
+
+        <div class="prompt2">
+            <p>Do you: A. Give the order to 'Abandon Ship!' B. Rally the men with your charisma, 'For the Queen!' C. Throw the wimpiest looking mate overboard, 'The next man not at his post will join him!'</p>
+            <button class= "A">A</button>
+            <button class="B">B</button>
+            <button class="C">C</button>
+        </div>
+
+        <div class="A_answer">
+            <p>All crew abandon ship and are swallowed up by the storm, being the captain you stay aboard as a giant wave engulfs your ship and you sink to the bottom of the sea.</p>
+        </div>
+
+        <div class="lose">
+            <h1>You Lose.</h1>
+            <button class="startover">Start Over?</button>
+        </div>
+
+        <div class="B_answer">
+            <p>Your crew is inspired by you. Manning thier post, the ship makes it out of the worst part of the storm.</p>
+        </div>
+
+        <div class="C_answer">
+            <p>Your crew fear your resolve...for now. You make it out of the storm, roll the die to see how many casualties your ship suffered.</p>
+            <div class="die2">
+                <button>Roll the Die</button>
+            </div>
+        </div>
+
+<!--Third Scenario-->
+
+        <div class="thirdscene">
+            <p>A spotter up on the mast yells out 'A pirate ship in the fog ahead!' Your crew, fresh out of the storm are eager for a fight.</p>
+        </div>
+
+        <div class="prompt3">
+            <p>Do you: A. Wait for the night as you stalk the pirate ship to take it down when they least expect it? B. Command the attack at full speed, risking an open battle and several casualties, also possibly damaging your ship? or C. Let the pirate ship go, against royal decree.</p>
+            <button class="A2">A</button>
+            <button class="B2">B</button>
+            <button class="C2">C</button>
+        </div>
+
+        <div class="A2_answer">
+            <p>Your crew sneaks aboard the pirate ship, once aboard it turns out to be a trap. You lose the entire boarding party. Roll the die to see how many you lost.</p>
+            <div class="die3">
+                <button>Roll the Die</button>
+            </div>
+        </div>
+
+        <div class="B2_answer">
+            <p>Your ship broadsides the pirate ship, all cannons firing. The pirates do not fight back and sink into the depths of the ocean.</p>
+        </div>
+
+        <div class="C2_answer">
+            <p>The royal navy declares you a traitor to the crown and hunts you down til the last of your days.</p>
+        </div>
+
+        <div class="lose2">
+            <h1>You Lose.</h1>
+            <button class="startover2">Start Over?</button>
+        </div>
+
+<!--Fourth Scenario -->
+
+    <div class ="fourthscene">
+        <p>A day passes on the sea, with no wind or rain. All of a sudden your ship starts to moan and loud noises can be heard coming from below deck...<p>
+    </div>
+
+    <div class="fightscene">
+        <p>Before you can send someone to check on whats going on, large tenticles come sprawling out of the water, wrapping themselves around your ship. The quarter master yells 'ALL HANDS TO BATTLE!' For a moment you watch as your ship errupts into chaos, sending ripples through the ocean. A tenticle slams on deck, just a few feet away from where you stand.</p>
+    </div>
+
+    <div class="prompt4">
+        <p>you prepare yourself to: A. Fight alongside your crew for your very life. B. Cower in the decks below, hoping this will pass over. C. Run around the ship giving orders to overcome the beast with strategy.</p>
+        <button class="A3">A</button>
+        <button class="B3">B</button>
+        <button class="C3">C<button>
+    </div>
+
+    <div class="A3_answer">
+        <p>You are a noble Captian and stand by your crew fighting off the giant beast.<p>
+    </div>
+    <div class="A3_answer2">
+        <p>if you lost more than 5 crew members during your voyage...you lose the battle</p>
+    </div>
+
+    <div class="B3_answer">
+        <p>Unfortunatly the giant tenticles destroyed the lower decks.</p>
+    </div>
+
+    <div class="B3_answer2">
+        <h1>You Lose.</h1>
+    </h1>
+
+    <div class="C3_answer">
+        <p>You and your crew are able to come up with a plan to destroy the beast, using every last one of your cannons. You saved the ship and your remaining crew members!</p>
+    </div>
+
+    <div class="C3_answer2">
+        <h1>Congratulations, you won the game!</h1>
+    </div>
+</div>
+
+
+
+
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="Java1.js"></script>
 </body>
 </html>

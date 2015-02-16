@@ -1,10 +1,100 @@
+.wrapper {
+  max-width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+
+
 h1 {
     text-align: center;
     font-size: 40px;
-    color: #4783ba;
+    color: #00CCCC;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-.image {
-    padding-left: 28%;
+h2 {
+    text-align: center;
+    font-size: 25px;
+    color: #009999;
+    font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+#firstscene {
+    display: none;
+    color: #009999;
+    font-size: 30px;
+}
+#character1 {
+    color: #009999;
+    border-color: #009999;
+    font-size: 15px;
+}
+button {
+    background-color: #009999;
+    color:white;
+    font-size: 15px;
+}
+.prompt1 {
+    display: none;
+}
+.pantsbrown {
+    display: none;
+}
+.pantsred {
+    display: none;
+}
+.secondscene {
+    display: none;
+}
+.prompt2 {
+    display: none;
+}
+
+.A_answer {
+    display: none;
+}
+
+.B_answer {
+    display: none;
+}
+
+.C_answer {
+    display: none;
+}
+.startover {
+    display: none;
+}
+.lose {
+    display: none;
+}
+.active {
+    display: block;
+}
+
+.thirdscene {
+    display: none;
+}
+
+.prompt3 {
+    display: none;
+}
+
+.A2_answer {
+    display: none;
+}
+.B2_answer {
+    display: none;
+}
+.C2_answer {
+    display: none;
+}
+.lose2 {
+    display: none;
+}
+
+.fourthscene, .prompt4, .fightscene, .A3_answer, .A3_answer2, .B3_answer, .B3_answer2, .C3_answer, .C3_answer2{
+    display: none;
 }

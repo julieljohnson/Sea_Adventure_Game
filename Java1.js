@@ -1,59 +1,404 @@
-alert("Welcome to an adventure game about life on the open sea!");
+//CONSTRUCTORS///////////////////////////////////////////
+////////////////////////////////////////////////////////
 
-alert("Ahoy, you are going to embark on this voyage as a British Navy ship Captain! You have 30 fine seamen...try and keep them alive");
+
+//player number one //////////////////////////////////
 
 
-// first scenario //
-alert("You wake up to the quarter master shaking you saying 'Cap'n a storm came out of nowhere, the sail master got knocked out by a loose riggin'. We need you at the wheel!' '");
-var pantscolor= prompt("You jump out of bed and open your drawer to grab some pants. Which pants do you choose? The brown or red pair?");
-    if(pantscolor === "brown") {
-    alert("When you come up on the deck, your first mate is so stunned by your pants that he falls overboard. Lose 1 crew member");
-    }
-    else if (pantscolor === "red") {
-    alert("How patriotic of you!");
+function Character(spec) {
+  var spec = spec || {};
+  this.name = spec.name || "person";
+  this.crew = 30;
+  this.wealth = 40;
+
+
+  this.fail = function (crew) {
+    var lose = Math.floor(Math.random() * 6);
+    console.log('')
+    crew.damage(lose);
+}
+    this.attack = function (monster) {
+      var hits = Math.floor(Math.random() * 6);
+      console.log('')
+      monster.wounded(hits);
+  }
+
+  // this.wealth = function (crew) {
+  //     var gain = (this.wealth + 10);
+  //     console.log('wealth works')
+  //     crew.advance(gain);
+  // }
+
+
+}
+
+//player number two/ working on getting set up //////////////////////////////////
+
+// function Character2(spec) {
+//   var spec = spec || {};
+//   this.name = spec.name || "person";
+//   this.life = 30;
+//   this.wealth = 40;
+//
+//
+//   this.attack = function (monster) {
+//     var hits = Math.floor(Math.random() * 20);
+//     console.log("pew pew");
+//     monster.damage(hits);
+//   }
+//
+//
+// }
+
+
+
+///////the kracken/ monster ///////////////////////////////
+
+function Monster() {
+  this.name = "kracken"
+  this.life = 100;
+  this.wounded = function (hits) {
+    if(this.life >= 0) {
+    this.life = this.life - hits;
+    console.log(this.name + " was hit!!");
+  } else {
+    console.log(this.name + " HAS DIED, YOU WIN!!!!!");
+  }
+}
+
+}
+
+///////////// ships crew ///////////////////
+
+function Crew() {
+  this.name = "crew"
+  this.life = 30;
+  this.damage = function (lose) {
+    if(this.life >= 0) {
+    this.life = this.life - lose;
+    console.log(this.name + " has fallen overboard!!");
+  } else {
+    console.log(this.name + " have all died");
+  }
+}
+
+ // this.advance = function (gain) {
+ //     if(this.wealth >= 0){
+ //     this.wealth = this.wealth + gain;
+ //     console.log(this.name + "has gained 10 wealth");
+ // } else {
+ //     console.log(this.name + "has all the wealth");
+ // }
+ // }
+
+}
+
+
+
+
+var sea = {
+  init: function () {
+    sea.initEvents();
+  },
+  initStyling: function () {
+
+  },
+  initEvents: function () {
+    $("#createGame").on('submit', function (e) {
+      e.preventDefault();
+      var traits = {
+        name: $('#character input[name="name"]').val(),
+      };
+      sea.character = new Character(traits);
+      sea.Crew = new Crew();
+      sea.renderBoard();
+
+    });
+
+
+/////First Scenario---- Character one///////////////////////
+
+
+    $("#board").click(function(e){
+        e.preventDefault();
+        $(this).hide();
+        $('.choose').hide();
+        $('#createGame').hide();
+        $('#firstscene').show();
+    });
+
+
+    $("#firstscene").click(function(e){
+        e.preventDefault();
+        $(this).hide();
+        $(".prompt1").show();
+
+    })
+
+    $('.brown').click(function(e){
+        e.preventDefault();
+        $(".prompt1").hide();
+        $(".red").hide();
+        $(".pantsbrown").show();
+
+    })
+
+    $('.die').click(function(e){
+        e.preventDefault();
+        sea.character.fail(sea.Crew);
+        $(".prompt1").hide();
+        $(".red").hide();
+        $(".pantsbrown").hide();
+        $(".die").hide();
+
+        $('.status').text(sea.Crew.name + "'s number is now " + sea.Crew.life);
+    })
+
+    $('.status').click(function(e){
+        e.preventDefault();
+        $('.status').hide();
+        $('.secondscene').fadeToggle('slow', 'linear');
+    })
+
+    $('.red').click(function(e){
+        e.preventDefault();
+        $('.prompt1').hide();
+        $(".brown").hide();
+        $('.pantsred').fadeToggle('slow', 'linear');
+
+        // sea.character.wealth(sea.Crew);
+        // $('.wealthstatus').text(sea.Character.name + "'s wealth is now" + sea.Character.wealth);
+
+
+    })
+
+
+    //////second scenario/////////
+
+    $('.pantsred').click(function(e){
+        e.preventDefault();
+        $('.pantsred').hide();
+        $('.secondscene').fadeToggle('slow', 'linear');
+
+    })
+
+    $('.secondscene').click(function(e){
+        e.preventDefault();
+        $('.secondscene').hide();
+        $('.prompt2').fadeToggle('slow', 'linear');
+
+
+    })
+
+    $('.A').click(function(e){
+        e.preventDefault();
+        $('.prompt2').hide();
+        $('.A_answer').fadeToggle('slow', 'linear');
+        $('.lose').fadeToggle('slow', 'linear');
+        $('.startover').fadeToggle('slow', 'linear');
+    })
+
+    $('.startover').click(function(e){
+        $('.startover').hide();
+        $('.lose').hide();
+        $('.A_answer').hide();
+        $('.choose').show();
+        $('#createGame').show();
+    })
+
+    $('.B').click(function(e){
+        e.preventDefault();
+        $('.prompt2').hide();
+        $('.B_answer').fadeToggle('slow', 'linear');
+
+    })
+
+    $('.C').click(function(e){
+        e.preventDefault();
+        $('.prompt2').hide();
+        $('.C_answer').fadeToggle('slow', 'linear');
+        $('.die2').show();
+    })
+
+    $('.die2').click(function(e){
+        e.preventDefault();
+        sea.character.fail(sea.Crew);
+        $('.C_answer').hide();
+        $('die2').hide();
+        $('.status2').show();
+
+        $('.status2').text(sea.Crew.name + "'s number is now " + sea.Crew.life);
+    })
+
+
+    /////////Third Scenario //////////
+
+
+    $('.B_answer').click(function(e){
+        e.preventDefault();
+        $('.B_answer').hide();
+        $('.thirdscene').fadeToggle('slow', 'linear');
+
+    })
+
+    $('.status2').click(function(e){
+        e.preventDefault();
+        $('.status2').hide();
+        $('.thirdscene').fadeToggle('slow', 'linear');
+    })
+
+    $('.thirdscene').click(function(e){
+        e.preventDefault();
+        $('.thirdscene').hide();
+        $('.prompt3').fadeToggle('slow', 'linear');
+    })
+
+    $('.A2').click(function(e){
+        e.preventDefault();
+        $('.prompt3').hide();
+        $('.A2_answer').fadeToggle('slow', 'linear');
+        $('.die3').show();
+    })
+
+    $('.die3').click(function(e){
+        e.preventDefault();
+        sea.character.fail(sea.Crew);
+        $('.die3').hide();
+        $('.A2_answer').hide();
+        $('.status3').show();
+
+        $('.status3').text(sea.Crew.name + "'s number is now " + sea.Crew.life);
+
+    })
+
+    $('.B2').click(function(e){
+        e.preventDefault();
+        $('.prompt3').hide();
+        $('.B2_answer').fadeToggle('slow', 'linear');
+    })
+
+    $('.C2').click(function(e){
+        e.preventDefault();
+        $('.prompt3').hide();
+        $('.C2_answer').fadeToggle('slow', 'linear');
+        $('.lose2').fadeToggle('slow', 'linear');
+        $('.startover2').show();
+    })
+
+    $('.startover2').click(function(e){
+        $('.startover2').hide();
+        $('.lose2').hide();
+        $('.C2_answer').hide();
+        $('.choose').show();
+        $('#createGame').show();
+    })
+
+/////////fourth scenario ///////////////////////////////////
+    $('.B2_answer').click(function(e){
+        e.preventDefault();
+        $('.B2_answer').hide();
+        $('.fourthscene').fadeToggle('slow', 'linear');
+    })
+
+    $('.status3').click(function(e){
+        e.preventDefault();
+        $('.status3').hide();
+        $('.fourthscene').fadeToggle('slow', 'linear');
+    })
+
+    $('.fourthscene').click(function(e){
+        e.preventDefault();
+        $('.fourthscene').hide();
+        $('.prompt4').fadeToggle('slow', 'linear');
+    })
+
+    $('.A3').click(function(e){
+        e.preventDefault();
+        $('.prompt4').hide();
+        $('.A3').hide();
+        $('.A3_answer').fadeToggle('slow', 'linear');
+    })
+
+    $('.A3_answer').click(function(e){
+        e.preventDefault();
+        $('.A3_answer').hide();
+        $('.A3_answer2').fadeToggle('slow', 'linear');
+
+        sea.character.fail(sea.crew);
+      $(".status4").text(sea.monster.name + "'s life is: " + sea.crew.life);
+    })
+
+    $('.B3').click(function(e){
+        e.preventDefault();
+        $('.prompt4').hide();
+        $('.B3_answer').fadeToggle('show', 'linear');
+
+    })
+
+    $('.B3_answer').click(function(e){
+        e.preventDefault();
+        $('.B3_answer').hide();
+        $('.B3_answer2').fadeToggle('show', 'linear');
+    })
+
+    $('.C3').click(function(e){
+        e.preventDefault();
+        $('.prompt4').hide();
+        $('.C3').hide();
+        $('.C3_answer').fadeToggle('show', 'linear');
+
+        sea.character.attack(sea.monster);
+      $(".status").text(sea.monster.name + "'s life is: " + sea.monster.life);
+    })
+
+    $('.C3_answer').click(function(e){
+        e.preventDefault();
+        $('.C3_answer').hide();
+        $('.C3_answer2').fadeToggle('show', 'linear');
+    })
+
+
+},
+
+
+  renderBoard: function () {
+
+        $("#board").append(sea.character + "<p>Ahoy, you are going to embark on this voyage as a British Navy ship Captain! You have 30 fine seamen...try and keep them alive</p><button>Continue</button>");
     }
 
-//second scenario //
-alert("With your pants on, you run up to the deck, water splashes you in the face as lightening strikes all around your ship. You glance around at all the faces of your crew, standing about the deck. The quarter master whispers in your ear, 'they waitin' for your command, sir' ");
-var command =prompt( "Do you: A. Give the order to 'Abandon Ship!' B. Rally the men with your charisma, 'For the Queen!' C. Throw the wimpiest looking mate overboard, 'The next man not at his post will join him'");
-    if(command === "A") {
-    alert("All crew abandon ship and are swallowed up by the storm, being the captain you stay aboard as a giant wave engulfs your ship and you sink to the bottom of the sea.");
-    alert("You lose.");
-    }
-    else if (command === "B") {
-    alert("Your crew is inspired by you. Manning thier post, the ship makes it out of the worst part of the storm.");
-    }
-    else if (command === "C") {
-    alert("Your crew fear your resolve...for now. You make it out of the storm, only losing 5 crew members.");
-    }
-//third scenario //
 
-alert("A spotter up on the mast yells out 'A pirate ship in the fog ahead!' Your crew, fresh out of the storm are eager for a fight.");
-var fight= prompt("Do you: A. Wait for the night as you stalk the pirate ship to take it down when they least expect it? B. Command the attack at full speed, risking an open battle and several casualties, also possibly damaging your ship? or C. Let the pirate ship go, against royal decree.");
-    if(fight === "A") {
-    alert("Your crew sneaks aboard the pirate ship, once aboard it turns out to be a trap. You lose the entire boarding party. Lose 20");
-    }
-    else if(fight === "B") {
-    alert("Your ship broadsides the pirate ship, all cannons firing. The pirates do not fight back and sink into the depths of the ocean.");
-    }
-    else if(fight === "C"){
-    alert("The royal navy declares you a traitor to the crown and hunts you down til the last of your days.");
-    alert("You lose.");
-    }
 
-//fourth scenario //
 
-alert("A day passes on the sea, with no wind or rain. All of a sudden your ship starts to moan and loud noises can be heard coming from below deck...");
-alert("Before you can send someone to check on whats going on, large tenticles come sprawling out of the water, wrapping themselves around your ship. The quarter master yells 'ALL HANDS TO BATTLE!' For a moment you watch as your ship errupts into chaos, sending ripples through the ocean. A tenticle slams on deck, just a few feet away from where you stand.");
-var final= prompt("you prepare yourself to: A. Fight alongside your crew for your very life. B. Cower in the decks below, hoping this will pass over. C. Run around the ship giving orders to overcome the beast with strategy.");
-    if(final === "A") {
-    alert("You are a noble Captian and stand by your crew fighting off the giant beast.");
-    alert("if you lost more than 5 crew members during your voyage...you lose the battle");
-    }
-    else if(final === "B") {
-    alert("Unfortunatly the giant tenticles destroyed the lower decks. You lose")
-    }
-    else if(final === "C") {
-    alert("You and your crew are able to come up with a plan to destroy the beast, using every last one of your cannons. You saved the ship and your remaining crew members!");
-    alert("Congratulations, you won the game!");
-    }
+    // $("#board").append("<img class='kracken' src=images/kracken.jpg><button>Attack</button>");
+
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function () {
+  sea.init();
+});
